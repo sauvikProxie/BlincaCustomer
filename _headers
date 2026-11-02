@@ -1,0 +1,57 @@
+# Cloudflare _headers — see https://developers.cloudflare.com/pages/configuration/headers/
+#
+# @sveltejs/adapter-cloudflare appends its own rules for /_app/immutable/*
+# (long-lived, hashed assets) below this file at build time — do not
+# duplicate that here. See .svelte-kit/cloudflare/_headers after a build.
+
+# Security headers for every STATIC response (true static files, and
+# prerendered routes served as static HTML — see src/routes/(marketing)).
+# Cloudflare does not run this file's rules for responses the Worker builds
+# itself at request time (SSR pages, the /api/auth/* proxy); those get the
+# same four headers from src/hooks.server.ts's handleSecurityHeaders instead.
+# Keep the two in sync by hand if this list ever changes.
+#
+# No custom Permissions-Policy entries are added for APIs the app doesn't
+# use (camera, geolocation, …) beyond this conservative, truthful baseline:
+# nothing on this site currently asks for any of them.
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+  X-Frame-Options: DENY
+
+# Hashed logo/wordmark assets emitted under /_app/immutable/ already get the
+# adapter's immutable caching. These are unhashed filenames in static/, so
+# they get a shorter, revalidate-friendly cache instead of immutable.
+/favicon.ico
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+/favicon-32.png
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+/apple-touch-icon.png
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+/icon-192.png
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+/icon-512.png
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+/og-default.png
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+/site.webmanifest
+  Cache-Control: public, max-age=86400
+
+# Hero photo variants (bun run images:hero). Unhashed filenames, so same
+# revalidate-friendly policy as the other static images above.
+/hero/*
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+# Mock food photos (bun run images:food). Unhashed filenames, same policy.
+/food/*
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+# Self-hosted Figtree (bun run — committed, stable filenames). Long cache; the
+# content never changes under a given name, and the CSS @font-face is what moves
+# if a file is ever swapped.
+/fonts/*
+  Cache-Control: public, max-age=31536000, stale-while-revalidate=86400
+
+# These are generated per-request (lib/seo/routes.ts) and already set their
+# own Cache-Control in their +server.ts handlers; nothing to add here.

@@ -1,0 +1,33 @@
+Blinca food photos — credits
+=============================
+
+Mock/demo photography used on the customer home page. All photos from Unsplash
+(unsplash.com/license). The footer credits them as "Matbilder från Unsplash".
+These are placeholder content, not real Blinca restaurants or dishes.
+
+pizza-1      — photo by Ivan Torres on Unsplash
+pizza-2      — photo by Shourav Sheikh on Unsplash
+pizza-3      — photo by Aurélien Lemasson-Théobald on Unsplash
+sushi-1      — photo by Vinicius Benedit on Unsplash
+sushi-2      — photo by Riccardo Bergamini on Unsplash
+burger-1     — photo by amirali mirhashemian on Unsplash
+burger-2     — photo by amirali mirhashemian on Unsplash
+bowl-1       — photo by Miu Sua on Unsplash
+bowl-2       — photo by You Le on Unsplash
+ramen-1      — photo by Diego Lozano on Unsplash
+ramen-2      — photo by Huyen Bui on Unsplash
+tacos-1      — photo by Jeswin Thomas on Unsplash
+curry-1      — photo by amirali mirhashemian on Unsplash
+curry-2      — photo by Kalyani Akella on Unsplash
+thai-1       — photo by Markus Winkler on Unsplash
+dumplings-1  — photo by charlesdeluvio on Unsplash
+pasta-2      — photo by Danijela Prijovic on Unsplash
+kebab-1      — photo by Zoshua Colah on Unsplash
+steak-1      — photo by Tim Toomey on Unsplash
+breakfast-1  — photo by nikldn on Unsplash
+coffee-1     — photo by Jocelyn Morales on Unsplash
+dessert-1    — photo by Courtney Cook on Unsplash
+cake-1       — photo by Takuya Nagaoka on Unsplash
+salad-1      — photo by Yoav Aziz on Unsplash
+fries-1      — photo by Mitchell Luo on Unsplash
+groceries-1  — photo by Maria Lin Kim on Unsplash

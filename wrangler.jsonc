@@ -1,0 +1,36 @@
+{
+	"$schema": "./node_modules/wrangler/config-schema.json",
+	"name": "blinca-customer",
+	"compatibility_date": "2026-10-05",
+	"compatibility_flags": ["nodejs_als"],
+	"main": ".svelte-kit/cloudflare/_worker.js",
+	"assets": {
+		"binding": "ASSETS",
+		"directory": ".svelte-kit/cloudflare"
+	},
+	// Top level = production. Staging is `--env staging` (see docs/DEPLOY.md).
+	// Wrangler does not inherit routes, so each environment states its own.
+	// Staging hosts are one level deep (e.g. partner-staging.blinca.se): the
+	// universal certificate covers *.blinca.se only, not *.staging.blinca.se.
+	"workers_dev": false,
+	"preview_urls": false,
+	// The customer app is live on staging only for now: blinca.se serves the
+	// coming-soon page. Production has no route, so it cannot be reached.
+	// At launch: add { "pattern": "blinca.se", "custom_domain": true } here and
+	// move coming-soon off the apex (apps/coming-soon/wrangler.jsonc).
+	"routes": [],
+	"observability": {
+		"enabled": true
+	},
+	"env": {
+		"staging": {
+			"name": "blinca-customer-staging",
+			"workers_dev": false,
+			"preview_urls": false,
+			"routes": [{ "pattern": "staging.blinca.se", "custom_domain": true }],
+			"observability": {
+				"enabled": true
+			}
+		}
+	}
+}

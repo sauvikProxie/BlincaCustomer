@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="">
+  <rect width="400" height="400" fill="#F4EBE4"/>
+  <g fill="none" stroke="#C9B3A6" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="200" cy="205" r="78"/>
+    <circle cx="200" cy="205" r="56"/>
+    <!-- fork -->
+    <path d="M108 128v34a16 16 0 0 0 16 16h0a16 16 0 0 0 16-16v-34"/>
+    <path d="M124 128v50"/>
+    <path d="M124 178v94"/>
+    <!-- knife -->
+    <path d="M284 128c-20 6-26 40-20 70 2 10 10 14 20 14z"/>
+    <path d="M284 212v60"/>
+  </g>
+</svg>

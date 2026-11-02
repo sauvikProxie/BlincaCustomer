@@ -1,0 +1,87 @@
+{
+	"name": "@blinca/customer",
+	"private": true,
+	"version": "0.0.1",
+	"type": "module",
+	"scripts": {
+		"dev": "vite dev --port 5173",
+		"build": "wrangler types && vite build && node scripts/check-no-sourcemaps.mjs",
+		"preview": "wrangler dev .svelte-kit/cloudflare/_worker.js --port 4173",
+		"prepare": "node scripts/compile-paraglide.js && svelte-kit sync || echo ''",
+		"check": "wrangler types --check && node scripts/compile-paraglide.js && svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"check-types": "node scripts/compile-paraglide.js && svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"lint": "prettier --check . && eslint --cache .",
+		"format": "prettier --write .",
+		"test:unit": "vitest",
+		"test": "bun run test:unit --run && bun run test:e2e",
+		"test:e2e": "playwright install && playwright test",
+		"test:e2e:mocked": "playwright test -c playwright.mocked.config.ts",
+		"gen": "wrangler types",
+		"images:hero": "node scripts/build-hero-images.mjs",
+		"images:brand": "node scripts/build-brand-assets.mjs",
+		"images:food": "node scripts/build-food-images.mjs",
+		"deploy:staging": "bun run build && wrangler deploy --env staging",
+		"deploy:production": "echo 'Customer production is not live yet (blinca.se serves coming-soon). Use deploy:staging.' && exit 1",
+		"verify:no-sourcemaps": "node scripts/check-no-sourcemaps.mjs"
+	},
+	"dependencies": {
+		"@blinca/auth": "workspace:*",
+		"@blinca/backend": "workspace:*",
+		"@convex-dev/better-auth": "^0.12.5",
+		"@turf/turf": "^7.4.0",
+		"convex": "^1.42.3",
+		"convex-svelte": "0.14.0",
+		"jspdf": "^4.2.1",
+		"mapbox-gl": "^3.33.0",
+		"zod": "^4.6.5"
+	},
+	"devDependencies": {
+		"@axe-core/playwright": "^4.13.0",
+		"@eslint/js": "^10.0.1",
+		"@inlang/paraglide-js": "^2.25.4",
+		"@playwright/test": "^1.60.0",
+		"@sveltejs/adapter-cloudflare": "^8.0.0",
+		"@sveltejs/kit": "^3.0.0",
+		"@sveltejs/vite-plugin-svelte": "^7.2.0",
+		"@types/node": "^22",
+		"@vitest/browser-playwright": "^4.1.8",
+		"axe-core": "^4.14.0",
+		"eslint": "^10.4.1",
+		"eslint-config-prettier": "^10.1.8",
+		"eslint-plugin-svelte": "^3.19.0",
+		"globals": "^17.6.0",
+		"pixelmatch": "^8.0.0",
+		"playwright": "^1.60.0",
+		"pngjs": "^7.0.0",
+		"prettier": "^3.8.3",
+		"prettier-plugin-svelte": "^4.1.0",
+		"svelte": "^5.57.1",
+		"svelte-check": "^4.6.0",
+		"typescript": "^6.0.3",
+		"typescript-eslint": "^8.60.1",
+		"vite": "^8.3.0",
+		"vitest": "^4.1.8",
+		"vitest-browser-svelte": "^2.1.1",
+		"wrangler": "^4.97.0"
+	},
+	"imports": {
+		"#lib": "./src/lib/index.js",
+		"#lib/*": "./src/lib/*",
+		"#app/env": {
+			"types": "./node_modules/@sveltejs/kit/src/runtime/app/env/client.js",
+			"browser": "./node_modules/@sveltejs/kit/src/runtime/app/env/client.js",
+			"default": "./node_modules/@sveltejs/kit/src/runtime/app/env/server.js"
+		},
+		"#app/navigation": {
+			"types": "./node_modules/@sveltejs/kit/src/runtime/app/navigation/client.js",
+			"browser": "./node_modules/@sveltejs/kit/src/runtime/app/navigation/client.js",
+			"default": "./node_modules/@sveltejs/kit/src/runtime/app/navigation/server.js"
+		},
+		"#app/state": {
+			"types": "./node_modules/@sveltejs/kit/src/runtime/app/state/client.svelte.js",
+			"browser": "./node_modules/@sveltejs/kit/src/runtime/app/state/client.svelte.js",
+			"default": "./node_modules/@sveltejs/kit/src/runtime/app/state/server.js"
+		}
+	}
+}

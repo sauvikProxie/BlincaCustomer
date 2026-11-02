@@ -1,0 +1,12 @@
+{
+	"extends": "$app/tsconfig",
+	"compilerOptions": {
+		"strict": true,
+		// Paraglide generates JSDoc-typed .js into src/lib/paraglide; its
+		// Cloudflare `fetch` calls do not line up with worker-configuration.d.ts.
+		// Consumers still get full types from the JSDoc.
+		"checkJs": false,
+		"types": ["$app/types", "node", "./worker-configuration.d.ts"]
+	},
+	"include": ["src", "vite.config.ts", "playwright.config.ts"]
+}
